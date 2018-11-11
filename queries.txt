@@ -1,0 +1,14 @@
+select articles.title,popular_articles.views as number_of_view 
+from articles,popular_articles
+where '/article/' || articles.slug = popular_articles.path
+limit 3;
+
+select authors.name,count(log.path) as number_of_view from authors,log,articles
+where '/article/' || articles.slug = log.path and articles.author = authors.id
+group by authors.name
+order by number_of_view desc;
+
+
+select to_char(num_of_success_by_day.date,'Month dd yyyy'), round(num_of_error_by_day.numOfError*100.0/num_of_success_by_day.numOfSuccess,2) as percentage_of_errors
+from num_of_success_by_day,num_of_error_by_day
+where ((Cast (num_of_error_by_day.numOfError as float)/cast(num_of_success_by_day.numOfSuccess as float))>=0.01 and num_of_success_by_day.date = num_of_error_by_day.date);
