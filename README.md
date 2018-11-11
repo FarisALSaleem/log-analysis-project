@@ -4,10 +4,12 @@ This repository contains python3 code and two text files for the log-analysis-pr
 
 How-to-run
 ----------------------------------------------------------------------------------------------------
-1-make sure that you have psycopg2 installed.
+1. make sure that you have psycopg2 installed.
+
 Note: install psycopg2-binary if you don't want the random User warnings.
-2-make sure that you create the views in the views.txt file.
-3-run queries.py in the command line or terminal.
+
+2. make sure that you create the views in the views.txt file.
+3. run queries.py in the command line or terminal.
 
 Note: This code was written for python3 and will not work for python2.
 
