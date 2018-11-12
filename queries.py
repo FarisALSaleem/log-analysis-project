@@ -1,17 +1,19 @@
 import psycopg2
 
-q1 = '''select articles.title,popular_articles.views as number_of_view 
-from articles,popular_articles
-where '/article/' || articles.slug = popular_articles.path
-limit 3;'''
-q2 = '''select authors.name,count(log.path) as number_of_view from authors,log,articles
-where '/article/' || articles.slug = log.path and articles.author = authors.id
-group by authors.name
-order by number_of_view desc;'''
-q3 = '''select to_char(num_of_success_by_day.date,'Month dd yyyy'), round(num_of_error_by_day.numOfError*100.0/
-num_of_success_by_day.numOfSuccess,2)as percentage_of_errors
-from num_of_success_by_day,num_of_error_by_day
-where ((Cast (num_of_error_by_day.numOfError as float)/cast(num_of_success_by_day.numOfSuccess as float))>=0.01 and 
+q1 = '''SELECT  articles.title,popular_articles.views AS number_of_view 
+FROM articles,popular_articles
+WHERE '/article/' || articles.slug = popular_articles.path
+LIMIT 3;'''
+q2 = '''SELECT authors.name,SUM(popular_articles.views) AS number_of_view
+FROM authors,popular_articles,articles
+WHERE '/article/' || articles.slug = popular_articles.path 
+AND articles.author = authors.id
+GROUP BY authors.name
+ORDER BY number_of_view desc;'''
+q3 = '''SELECT to_char(num_of_success_by_day.date,'FMMonth dd yyyy'), round(num_of_error_by_day.numOfError*100.0/
+(num_of_success_by_day.numOfSuccess + num_of_error_by_day.numOfError),2) AS percentage_ofS_errors
+FROM num_of_success_by_day,num_of_error_by_day
+WHERE ((Cast (num_of_error_by_day.numOfError as float)/cast((num_of_success_by_day.numOfSuccess + num_of_error_by_day.numOfError) as float))>=0.01 AND 
 num_of_success_by_day.date = num_of_error_by_day.date);'''
 
 
