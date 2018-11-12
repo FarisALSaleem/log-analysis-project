@@ -8,8 +8,15 @@ How-to-run
 
 Note: install psycopg2-binary if you don't want the random User warnings.
 
-2. make sure that you create the views in the views.txt file.
-3. run queries.py in the command line or terminal.
+2. make sure that you have PostgreSQL installed
+
+Note: the version i'm using this 9.5.14
+
+3. make sure that you download newsdata.sql from [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip), unzip it and place in this directory.
+4. open cmd/terminal and traverse to this directory.
+5. run this command "psql -d news -f newsdata.sql"
+6. then run this command "psql -d news -f views.sql"
+7. finally run queries.py in the cmd/terminal.
 
 Note: This code was written for python3 and will not work for python2.
 
@@ -26,6 +33,7 @@ View
 ----------------------------------------------------------------------------------------------------
 these are the views that need to be created before running queries.py.
 
+```
 create view num_of_error_by_day as 
 select date(time) as date,count(status) as numOfError 
 from log 
@@ -40,9 +48,10 @@ create view popular_articles as
 select path,count(*) as views 
 from log group by path
 order by views desc;
-
+```
 Output example
 ----------------------------------------------------------------------------------------------------
+```
 1. What are the most popular three articles of all time?
 
         "Candidate is jerk, alleges rival" — 338647 views
@@ -61,10 +70,10 @@ Output example
 3. On which days did more than 1% of requests lead to errors?
 
         July      17 2016 — 2.32% error
-
+```
 Repository contains
 ----------------------------------------------------------------------------------------------------
 - queries.py -contains python3 code that performs queries on the news database.
-- views.text -contains the views statements that need to be created for the code to work.
+- views.sql -contains the views statements that need to be created for the code to work.
 - queries.text -sql statements that are used in queries.py(not need for the code to work). 
  
