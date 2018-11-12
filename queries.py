@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import psycopg2
 
 q1 = '''SELECT  articles.title,popular_articles.views AS number_of_view 
