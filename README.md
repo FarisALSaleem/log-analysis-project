@@ -4,10 +4,12 @@ This repository contains python3 code and two text files for the log-analysis-pr
 
 How-to-run
 ----------------------------------------------------------------------------------------------------
-1-make sure that you have psycopg2 installed.
+1. make sure that you have psycopg2 installed.
+
 Note: install psycopg2-binary if you don't want the random User warnings.
-2-make sure that you create the views in the views.txt file.
-3-run queries.py in the command line or terminal.
+
+2. make sure that you create the views in the views.txt file.
+3. run queries.py in the command line or terminal.
 
 Note: This code was written for python3 and will not work for python2.
 
@@ -16,9 +18,9 @@ Description
 This program connects the news database that is given in the project and performs queries to 
 answer the following questions:
 
-1- What are the most popular three articles of all time? 
-2- Who are the most popular article authors of all time? 
-3- On which days did more than 1% of requests lead to errors?
+1. What are the most popular three articles of all time? 
+2. Who are the most popular article authors of all time?
+3. On which days did more than 1% of requests lead to errors?
 
 View
 ----------------------------------------------------------------------------------------------------
@@ -62,7 +64,7 @@ Output example
 
 Repository contains
 ----------------------------------------------------------------------------------------------------
-queries.py -contains python3 code that performs queries on the news database.
-views.text -contains the views statements that need to be created for the code to work.
-queries.text -sql statements that are used in queries.py(not need for the code to work). 
+- queries.py -contains python3 code that performs queries on the news database.
+- views.text -contains the views statements that need to be created for the code to work.
+- queries.text -sql statements that are used in queries.py(not need for the code to work). 
  
