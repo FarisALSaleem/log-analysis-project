@@ -15,8 +15,8 @@ ORDER BY number_of_view desc;'''
 q3 = '''SELECT to_char(num_of_success_by_day.date,'FMMonth dd yyyy'), round(num_of_error_by_day.numOfError*100.0/
 (num_of_success_by_day.numOfSuccess + num_of_error_by_day.numOfError),2) AS percentage_ofS_errors
 FROM num_of_success_by_day,num_of_error_by_day
-WHERE ((Cast (num_of_error_by_day.numOfError as float)/cast((num_of_success_by_day.numOfSuccess + num_of_error_by_day.numOfError) as float))>=0.01 AND 
-num_of_success_by_day.date = num_of_error_by_day.date);'''
+WHERE (num_of_error_by_day.numOfError::float /(num_of_success_by_day.numOfSuccess + num_of_error_by_day.numOfError)::float)>=0.01 AND 
+(num_of_success_by_day.date = num_of_error_by_day.date);'''
 
 
 db = psycopg2.connect("dbname=news")
