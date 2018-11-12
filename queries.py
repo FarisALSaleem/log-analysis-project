@@ -25,22 +25,22 @@ cursor = db.cursor()
 print("1. What are the most popular three articles of all time?\n")
 cursor.execute(q1)
 answer1 = cursor.fetchall()
-for i in range(0, len(answer1)):
-    print("\t\"%s\" — %d views" % answer1[i])
+for title, view in answer1:
+    print('\t"{}" — {} views'.format(title,view))
 print("\n")
 
 print("2. Who are the most popular article authors of all time?\n")
 cursor.execute(q2)
 answer2 = cursor.fetchall()
-for i in range(0, len(answer2)):
-    print("\t%s — %d views" % answer2[i])
+for author, view in answer2:
+    print("\t{} — {} views".format(author,view))
 print("\n")
 
 print("3. On which days did more than 1% of requests lead to errors?\n")
 cursor.execute(q3)
 answer3 = cursor.fetchall()
-for i in range(0, len(answer3)):
-    print("\t%s — %.2f%% error" % answer3[i])
+for date,percent in answer3:
+    print("\t{} — {} error".format(date,percent))
 print("\n")
 
 db.close()
